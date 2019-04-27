@@ -4,19 +4,7 @@ extern crate gtk;
 use gio::prelude::*;
 use gtk::prelude::*;
 
-// upgrade weak reference or return
-//#[macro_export]
-//macro_rules! upgrade_weak {
-//    ($x:ident, $r:expr) => {{
-//        match $x.upgrade() {
-//            Some(o) => o,
-//            None => return $r,
-//        }
-//    }};
-//    ($x:ident) => {
-//        upgrade_weak!($x, ())
-//    };
-//}
+use crate::core;
 
 pub fn build_ui(application: &gtk::Application) {
     let window = gtk::ApplicationWindow::new(application);
@@ -48,11 +36,19 @@ pub fn build_ui(application: &gtk::Application) {
         let timer = sleep_type_button.get_active();
         let hours = slide_hours_button.get_value_as_int();
         let minutes = slide_minutes_button.get_value_as_int();
-        println!("{}:{} - {}", hours, minutes, timer);
+
+        println!("Got : {}h{}min - timer is {}", hours, minutes, timer);
+
+        if timer {
+            core::sleep::after((hours * 60) + minutes)
+        } else {
+            core::sleep::at(hours, minutes);
+        }
     });
 
     cancel_button.connect_clicked(move |_| {
         println!("Cancel!");
+        core::sleep::cancel();
     });
 
     window.show_all();

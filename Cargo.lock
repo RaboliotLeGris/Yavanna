@@ -284,7 +284,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "yavanna"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "gdk 0.10.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "gio 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
