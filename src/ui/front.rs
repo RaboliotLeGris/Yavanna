@@ -11,7 +11,7 @@ pub fn build_ui(application: &gtk::Application) {
 
     window.set_title("Yavanna");
     window.set_position(gtk::WindowPosition::Center);
-    window.set_default_size(640, 480);
+    window.set_default_size(100, 100);
 
     let grid = gtk::Grid::new();
     let sleep_type_button = gtk::CheckButton::new_with_label("Timer mode");
