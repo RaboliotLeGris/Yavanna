@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Yavanna
+Comment=It's time to put a valar to sleep
+Exec=/usr/bin/yavanna
+Icon=/opt/yavanna/misc/icon.png
+Terminal=false
