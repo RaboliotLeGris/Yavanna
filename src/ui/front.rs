@@ -32,10 +32,9 @@ pub fn build_ui(application: &gtk::Application) {
     window.add(&grid);
 
     sleep_button.connect_clicked(move |_| {
-        println!("sleep!");
         let timer = sleep_type_button.get_active();
-        let hours = slide_hours_button.get_value_as_int();
-        let minutes = slide_minutes_button.get_value_as_int();
+        let hours = slide_hours_button.get_value_as_int() as u32;
+        let minutes = slide_minutes_button.get_value_as_int() as u32;
 
         println!("Got : {}h{}min - timer is {}", hours, minutes, timer);
 
@@ -55,8 +54,7 @@ pub fn build_ui(application: &gtk::Application) {
 }
 
 pub fn run() {
-    let application = gtk::Application::new("fr.raboland.yavanna",
-                                            Default::default())
+    let application = gtk::Application::new(Some("fr.raboland.yavanna"), Default::default())
         .expect("Initialization failed...");
 
     application.connect_activate(|app| {

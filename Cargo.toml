@@ -5,7 +5,16 @@ authors = ["Jordan <jordan@raboland.fr>"]
 edition = "2018"
 
 [dependencies]
-gtk = "0.6.0"
-gdk = "0.10.0"
-gio = "0.6.0"
-glib = "0.7.1"
+#gtk = "0.8.0"
+#gio = "0.8.0"
+#gdk = "0.10.0"
+#glib = "0.7.1"
+
+[dependencies.gtk]
+version = "0.8.0"
+features = ["v3_16"]
+
+[dependencies.gio]
+version = ""
+features = ["v2_44"]
+

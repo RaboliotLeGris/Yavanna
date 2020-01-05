@@ -1,14 +1,14 @@
 const COMMAND: &str = "shutdown";
 
-pub fn at(hours: i32, minutes: i32) {
+pub fn at(hours: u32, minutes: u32) {
     let formated_arg = std::format!("{}:{}", hours, minutes);
     std::process::Command::new(COMMAND)
         .args(&["--no-wall", &formated_arg])
         .output()
-        .expect("Fail to run at command");;
+        .expect("Fail to run At command");
 }
 
-pub fn after(minutes: i32) {
+pub fn after(minutes: u32) {
     let formated_arg = std::format!("+{}", minutes);
     std::process::Command::new(COMMAND)
         .args(&["--no-wall", &formated_arg])
@@ -20,5 +20,5 @@ pub fn cancel() {
     std::process::Command::new(COMMAND)
         .args(&["-c"])
         .output()
-        .expect("Fail to run Cancer command");;
+        .expect("Fail to run Cancel command");
 }
