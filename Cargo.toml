@@ -11,7 +11,7 @@ edition = "2018"
 #glib = "0.7.1"
 
 [dependencies.gtk]
-version = "0.8.0"
+version = "0.8.1"
 features = ["v3_16"]
 
 [dependencies.gio]
