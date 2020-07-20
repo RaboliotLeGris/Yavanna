@@ -14,13 +14,13 @@ pub fn build_ui(application: &gtk::Application) {
     window.set_default_size(100, 100);
 
     let grid = gtk::Grid::new();
-    let sleep_type_button = gtk::CheckButton::new_with_label("Timer mode");
+    let sleep_type_button = gtk::CheckButton::with_label("Timer mode");
 
-    let slide_hours_button = gtk::SpinButton::new_with_range(0.0, 23.0, 1.0);
-    let slide_minutes_button = gtk::SpinButton::new_with_range(0.0, 59.0, 1.0);
+    let slide_hours_button = gtk::SpinButton::with_range(0.0, 23.0, 1.0);
+    let slide_minutes_button = gtk::SpinButton::with_range(0.0, 59.0, 1.0);
 
-    let sleep_button = gtk::Button::new_with_label("Sleep!");
-    let cancel_button = gtk::Button::new_with_label("Cancel");
+    let sleep_button = gtk::Button::with_label("Sleep!");
+    let cancel_button = gtk::Button::with_label("Cancel");
 
     grid.attach(&sleep_type_button, 0, 0, 2, 1);
     grid.attach(&slide_hours_button, 0, 2, 5, 1);
