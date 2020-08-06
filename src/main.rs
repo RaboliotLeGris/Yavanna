@@ -1,11 +1,6 @@
-mod ui {
-    pub mod front;
-}
-
-mod core {
-    pub mod sleep;
-}
+pub mod core;
+pub mod ui;
 
 fn main() {
-    ui::front::run();
+        ui::iced_front::run();
 }

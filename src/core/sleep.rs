@@ -1,24 +1,32 @@
+use crate::core::error::YavannaError;
+use std::error::Error;
+
 const COMMAND: &str = "shutdown";
 
-pub fn at(hours: u32, minutes: u32) {
-    let formated_arg = std::format!("{}:{}", hours, minutes);
+pub fn at(hours: u32, minutes: u32) -> Result<(), Box<dyn Error>> {
+    let formatted_arg = std::format!("{}:{}", hours, minutes);
     std::process::Command::new(COMMAND)
-        .args(&["--no-wall", &formated_arg])
-        .output()
-        .expect("Fail to run At command");
+        .args(&["--no-wall", &formatted_arg])
+        .output()?;
+    Ok(())
 }
 
-pub fn after(minutes: u32) {
-    let formated_arg = std::format!("+{}", minutes);
+pub fn after(minutes: u32) -> Result<(), Box<dyn Error>> {
+    if minutes == 0 {
+        return Err(Box::new(YavannaError::InvalidHour))
+    }
+    let formatted_arg = std::format!("+{}", minutes);
     std::process::Command::new(COMMAND)
-        .args(&["--no-wall", &formated_arg])
-        .output()
-        .expect("Fail to run After command");
+        .args(&["--no-wall", &formatted_arg])
+        .output()?;
+    Ok(())
 }
 
-pub fn cancel() {
+pub fn cancel() -> Result<(), Box<dyn Error>> {
     std::process::Command::new(COMMAND)
         .args(&["-c"])
-        .output()
-        .expect("Fail to run Cancel command");
+        .output()?;
+    Ok(())
 }
+
+// Find scheduled time -> /etc/crontab
