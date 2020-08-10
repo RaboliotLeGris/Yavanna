@@ -9,12 +9,12 @@ use crate::core::sleep;
 //
 // use iced::{Sandbox, Element, Column, Align, Button, Text, TextInput};
 
-use iced::{Sandbox, Element, button, Column, Button, Text, Settings, Align, Row, Checkbox, Container, Length, window};
+use iced::{Sandbox, Element, button, Column, Button, Text, Settings, Align, Row, Checkbox, Container, Length, window, Color};
 
 pub fn run() {
     let settings = Settings {
         window: window::Settings {
-            size: (500, 300),
+            size: (500, 250),
             resizable: false,
             decorations: true,
         },
@@ -180,27 +180,35 @@ impl Sandbox for Yavanna {
             .spacing(10)
             .align_items(Align::Center)
             .push(Text::new("hour:"))
-            .push(Row::new().push(
-                Button::new(&mut self.decrement_hour_button, Text::new("-"))
-                    .on_press(Message::DecrementHourPressed)
-                    .width(Length::Units(30))
-            )
-                .push(Text::new(self.hours.to_string()).size(25).width(Length::Units(50)))
-                .push(Button::new(&mut self.increment_hour_button, Text::new("+"))
-                    .on_press(Message::IncrementHourPressed)
-                    .width(Length::Units(30)))
+            .push(
+                Container::new(Row::new().push(
+                    Button::new(&mut self.decrement_hour_button, Text::new("-"))
+                        .on_press(Message::DecrementHourPressed)
+                        .width(Length::Units(30))
+                )
+                    .push(
+                        Text::new(self.hours.to_string())
+                            .size(25).width(Length::Units(50))
+                    )
+                    .push(Button::new(&mut self.increment_hour_button, Text::new("+"))
+                        .on_press(Message::IncrementHourPressed)
+                        .width(Length::Units(30))))
+                    .style(style::TimeInputRow)
             )
             .push(Text::new("minute:"))
-            .push(Row::new().push(
-                Button::new(&mut self.decrement_minute_button, Text::new("-"))
-                    .on_press(Message::DecrementMinutePressed)
-                    .width(Length::Units(30))
-            )
-                .push(Text::new(self.minutes.to_string()).size(25).width(Length::Units(50)))
-                .push(Button::new(&mut self.increment_minute_button, Text::new("+"))
-                    .on_press(Message::IncrementMinutePressed)
-                    .width(Length::Units(30))
+            .push(
+                Container::new(Row::new().push(
+                    Button::new(&mut self.decrement_minute_button, Text::new("-"))
+                        .on_press(Message::DecrementMinutePressed)
+                        .width(Length::Units(30))
                 )
+                    .push(Text::new(self.minutes.to_string()).size(25).width(Length::Units(50)))
+                    .push(Button::new(&mut self.increment_minute_button, Text::new("+"))
+                        .on_press(Message::IncrementMinutePressed)
+                        .width(Length::Units(30))
+                    )
+                )
+                    .style(style::TimeInputRow)
             )
             .push(
                 Button::new(&mut self.sleep_button, Text::new("Sleep"))
@@ -239,9 +247,38 @@ impl Sandbox for Yavanna {
         Container::new(main_column)
             .width(Length::Fill)
             .height(Length::Fill)
+            .style(style::BackContainer)
             .into()
     }
 }
 
 
-mod style {}
+mod style {
+    use iced::{container, Background, Color};
+
+    pub struct BackContainer;
+
+    impl container::StyleSheet for BackContainer {
+        fn style(&self) -> container::Style {
+            container::Style {
+                background: Some(Background::Color(Color::from_rgb8(
+                    0x00, 0x69, 0x5C,
+                ))),
+                text_color: Some(Color::WHITE),
+                ..container::Style::default()
+            }
+        }
+    }
+
+    pub struct TimeInputRow;
+
+    impl container::StyleSheet for TimeInputRow {
+        fn style(&self) -> container::Style {
+            container::Style {
+                background: Some(Background::Color(Color::WHITE)),
+                text_color: Some(Color::BLACK),
+                ..container::Style::default()
+            }
+        }
+    }
+}
