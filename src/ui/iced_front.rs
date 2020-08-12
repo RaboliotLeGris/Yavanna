@@ -4,10 +4,8 @@
 //  * https://github.com/hecrj/iced/blob/master/examples/progress_bar/src/main.rs
 //  * https://github.com/hecrj/iced/tree/master/examples
 //  */
-//
+
 use crate::core::sleep;
-//
-// use iced::{Sandbox, Element, Column, Align, Button, Text, TextInput};
 
 use iced::{Sandbox, Element, button, Column, Button, Text, Settings, Align, Row, Checkbox, Container, Length, window, Color};
 
@@ -97,7 +95,7 @@ impl Sandbox for Yavanna {
                 } else if minutes > 60 {
                     // not the safest way but for now, we can directly increment +1h30
                     self.hours += minutes / 60;
-                    self.minutes += minutes % 60;
+                    self.minutes = minutes % 60;
                 } else {
                     self.minutes = minutes;
                 }
@@ -139,11 +137,11 @@ impl Sandbox for Yavanna {
             Message::Sleep => {
                 if self.hours > 0 || self.minutes > 0 {
                     if self.timer {
-                        // sleep::after(self.hours * 60 + self.minutes)
                         println!("Should sleep after {}", self.hours * 60 + self.minutes);
+                        sleep::after(self.hours * 60 + self.minutes)
                     } else {
                         println!("Should sleep at {}:{}", self.hours, self.minutes);
-                        // sleep::at(self.hours, self.minutes)
+                        sleep::at(self.hours, self.minutes)
                     }
                     self.active = true;
                 }

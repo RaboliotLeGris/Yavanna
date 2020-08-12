@@ -1,14 +1,22 @@
 .DEFAULT_GOAL := build-release
-.PHONY: all run build build-release clean install uninstall
+.PHONY: all run build build-gtk build-iced build-release build-iced-release build-gtk-release clean install uninstall
 
-build:
-	cargo build
+build: build-iced
 
-build-release:
-	cargo build --release
+build-gtk:
+	cargo build --features gtk_f
+build-iced:
+	cargo build --features iced_f
+
+build-release: build-iced-release
+
+build-iced-release:
+	cargo build --features iced_f --release
+build-gtk-release:
+	cargo build --features gtk_f --release
 
 clean:
-	rm -rf target/
+	cargo clean
 
 install:
 	cp target/release/yavanna /usr/bin/yavanna
