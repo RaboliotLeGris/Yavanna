@@ -7,7 +7,7 @@
 
 use crate::core::sleep;
 
-use iced::{Sandbox, Element, button, Column, Button, Text, Settings, Align, Row, Checkbox, Container, Length, window, Color};
+use iced::{Sandbox, Element, button, Column, Button, Text, Settings, Align, Row, Checkbox, Container, Length, window};
 
 pub fn run() {
     let settings = Settings {
@@ -44,8 +44,6 @@ pub struct Yavanna {
     pub timer: bool,
     pub active: bool,
 
-    timer_tick: button::State,
-
     increment_hour_button: button::State,
     decrement_hour_button: button::State,
     increment_minute_button: button::State,
@@ -68,7 +66,6 @@ impl Sandbox for Yavanna {
             minutes: 0,
             timer: true,
             active: false,
-            timer_tick: Default::default(),
             increment_hour_button: Default::default(),
             decrement_hour_button: Default::default(),
             increment_minute_button: Default::default(),
@@ -89,16 +86,18 @@ impl Sandbox for Yavanna {
         match message {
             Message::QuicktimeAddThirtyMinPressed => {
                 let minutes = self.minutes + 30;
-                if minutes == 60 {
-                    self.hours += 1;
-                    self.minutes = 0;
-                } else if minutes > 60 {
-                    // not the safest way but for now, we can directly increment +1h30
-                    self.hours += minutes / 60;
-                    self.minutes = minutes % 60;
-                } else {
-                    self.minutes = minutes;
-                }
+                match minutes {
+                    60 => {
+                        self.hours += 1;
+                        self.minutes = 0;
+                    }
+                    m if m > 60 => {
+                        // not the safest way but for now, we can directly increment +1h30
+                        self.hours += minutes / 60;
+                        self.minutes = minutes % 60;
+                    }
+                    _ => self.minutes = minutes
+                };
             }
             Message::QuicktimeAddOneHourPressed => {
                 self.hours += 1;
@@ -136,18 +135,23 @@ impl Sandbox for Yavanna {
             }
             Message::Sleep => {
                 if self.hours > 0 || self.minutes > 0 {
+                    self.active = true;
                     if self.timer {
                         println!("Should sleep after {}", self.hours * 60 + self.minutes);
-                        sleep::after(self.hours * 60 + self.minutes)
-                    } else {
-                        println!("Should sleep at {}:{}", self.hours, self.minutes);
-                        sleep::at(self.hours, self.minutes)
+                        if let Err(e) = sleep::after(self.hours * 60 + self.minutes) {
+                            println!("[WARNING] Failed to execute sleep::after with error {:?}", e);
+                            self.active = false;
+                        }
+                    } else if let Err(e) = sleep::at(self.hours, self.minutes) {
+                        println!("[WARNING] Failed to execute sleep::at with error {:?}", e);
+                        self.active = false;
                     }
-                    self.active = true;
                 }
             }
             Message::Cancel => {
-                sleep::cancel();
+                if let Err(e) = sleep::cancel() {
+                    println!("[WARNING] Failed to execute sleep::cancel with error {:?}", e)
+                }
             }
         }
     }

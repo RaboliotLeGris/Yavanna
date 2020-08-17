@@ -5,6 +5,7 @@ authors = ["Jordan <jordan@raboland.fr>"]
 edition = "2018"
 
 [features]
+default = ["iced_f"]
 gtk_f = ["gtk", "gio"]
 iced_f = ["iced"]
 
