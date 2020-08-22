@@ -1,6 +1,6 @@
 [package]
 name = "yavanna"
-version = "0.3.0"
+version = "0.4.0"
 authors = ["Jordan <jordan@raboland.fr>"]
 edition = "2018"
 
