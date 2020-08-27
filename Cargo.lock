@@ -934,7 +934,7 @@ dependencies = [
 
 [[package]]
 name = "gtk"
-version = "0.9.1"
+version = "0.9.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "atk 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -2441,7 +2441,7 @@ name = "yavanna"
 version = "0.4.0"
 dependencies = [
  "gio 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "gtk 0.9.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "gtk 0.9.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "iced 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -2562,7 +2562,7 @@ dependencies = [
 "checksum glyph_brush 0.6.3 (registry+https://github.com/rust-lang/crates.io-index)" = "5fca6f9d679bff1322c76c9a1ad4b8553b30a94f3f75bea6936e19032c2f2ec3"
 "checksum glyph_brush_layout 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)" = "8b70adc570f1dc71b6b32e241cbcc2b42175f5aea71951fbf41e68b04aec24c7"
 "checksum gobject-sys 0.10.0 (registry+https://github.com/rust-lang/crates.io-index)" = "952133b60c318a62bf82ee75b93acc7e84028a093e06b9e27981c2b6fe68218c"
-"checksum gtk 0.9.1 (registry+https://github.com/rust-lang/crates.io-index)" = "04e8dfefe08ae2c0e3a8a221a5440a891a5e3402ba7c01078182f700c38ef345"
+"checksum gtk 0.9.2 (registry+https://github.com/rust-lang/crates.io-index)" = "2f022f2054072b3af07666341984562c8e626a79daa8be27b955d12d06a5ad6a"
 "checksum gtk-sys 0.10.0 (registry+https://github.com/rust-lang/crates.io-index)" = "89acda6f084863307d948ba64a4b1ef674e8527dddab147ee4cdcc194c880457"
 "checksum guillotiere 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)" = "487a6681128d476cdee36c51c44138268ce43c854bc15390fe31a984e02aefa4"
 "checksum heck 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)" = "20564e78d53d2bb135c343b3f47714a56af2061f1c928fdb541dc7b9fdd94205"
