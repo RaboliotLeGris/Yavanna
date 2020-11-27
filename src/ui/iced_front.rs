@@ -5,20 +5,25 @@
 //  * https://github.com/hecrj/iced/tree/master/examples
 //  */
 
-use crate::core::sleep;
+use iced::{Align, button, Button, Checkbox, Column, Container, Element, Length, Row, Sandbox, Settings, Text, window};
 
-use iced::{Sandbox, Element, button, Column, Button, Text, Settings, Align, Row, Checkbox, Container, Length, window};
+use crate::core::sleep;
 
 pub fn run() {
     let settings = Settings {
         window: window::Settings {
             size: (500, 250),
+            min_size: None,
+            max_size: None,
             resizable: false,
             decorations: true,
+            transparent: false,
+            always_on_top: false,
+            icon: None,
         },
         ..Default::default()
     };
-    Yavanna::run(settings)
+    Yavanna::run(settings).unwrap();
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -256,7 +261,7 @@ impl Sandbox for Yavanna {
 
 
 mod style {
-    use iced::{container, Background, Color};
+    use iced::{Background, Color, container};
 
     pub struct BackContainer;
 
