@@ -2,7 +2,7 @@
 * Project with **Rust**, **GTK+** and **Iced**.
 
 ## State
-Might probably build a windows version (the shutdown version if for linux :)
+Cross-platform but the system command are only available for linux,
 
 ## Origin of the name
 "The Sleep of Yavanna refers to the period in Middle-earth's history between the Spring of Arda and the rising of Moon and Sun, during which almost all living things slept and Middle-earth was lit only by starlight." [Source](lotr.fandom.com) 
