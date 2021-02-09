@@ -8,7 +8,7 @@ Cross-platform but the system command are only available for linux,
 "The Sleep of Yavanna refers to the period in Middle-earth's history between the Spring of Arda and the rising of Moon and Sun, during which almost all living things slept and Middle-earth was lit only by starlight." [Source](lotr.fandom.com) 
 
 ## Purpose 
-I was tired to fall asleep watching Netflix and never cut my portable, so here is a little timer that shutdown the system after a given time or at a specified hour. 
+I was tired to fall asleep watching Netflix and never stop my PC, so here is a little timer that shutdown the system after a given time or at a specified hour. 
 
 ## How to run it
 TODO: Make a release
