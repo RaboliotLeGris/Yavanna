@@ -10,7 +10,7 @@ gtk_f = ["gtk", "gio"]
 iced_f = ["iced"]
 
 [dependencies.iced]
-version = "0.2.0"
+version = "0.3.0"
 optional = true
 
 [dependencies.gtk]
